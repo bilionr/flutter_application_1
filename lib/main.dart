@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
 
 
-    body: Padding(
+    body: SingleChildScrollView(
       padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,6 +128,92 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ),
 
+          Container(
+          height: 175,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+
+              Container(
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12, width:3,),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(blurRadius: 10, offset: Offset(1,3),)],
+                ),
+                width: 300,
+                child: const Center(child: Text('Item 1', style: TextStyle(fontSize: 18, color: Colors.white),)),
+              ),
+
+              Container(
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12, width:3,),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(blurRadius: 10, offset: Offset(1,3),)],
+                ),
+                width: 300,
+                child: const Center(child: Text('Item 1', style: TextStyle(fontSize: 18, color: Colors.white),)),
+              ),
+
+              Container(
+               margin: EdgeInsets.all(8),
+               decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12, width:3,),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(blurRadius: 10, offset: Offset(1,3),)],
+                ),
+                width: 300,
+                child: const Center(child: Text('Item 1', style: TextStyle(fontSize: 18, color: Colors.white),)),
+              ),
+
+              Container(
+               margin: EdgeInsets.all(8),
+               decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12, width:3,),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(blurRadius: 10)],
+                ),
+                width: 300,
+                child: const Center(child: Text('Item 1', style: TextStyle(fontSize: 18, color: Colors.white),)),
+              ),
+
+            
+            ],
+          ),
+
+        
+        ),
+
+        GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          shrinkWrap: true,
+          children: List.generate(20, (index) {
+            return Padding(
+              padding: const EdgeInsets.all(5),
+              child: Container(
+                margin: EdgeInsets.all(8),
+               decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black12, width:3,),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(blurRadius: 10)],
+                ),
+                width: 300,
+                child: const Center(child: Text('Item 1', style: TextStyle(fontSize: 18, color: Colors.white),)),
+              )
+            );
+          })
+        )
+        
+
+
 
 
 
@@ -156,3 +242,5 @@ class _MyHomePageState extends State<MyHomePage> {
   
    // widget build
 } // class
+
+
