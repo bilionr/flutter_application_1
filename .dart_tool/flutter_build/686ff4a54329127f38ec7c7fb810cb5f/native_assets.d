@@ -1,0 +1,1 @@
+ D:\\Akademik\\pmob\ prak\\flutter_application_1\\.dart_tool\\flutter_build\\686ff4a54329127f38ec7c7fb810cb5f\\native_assets.yaml: 
