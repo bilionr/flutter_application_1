@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/ui/registration.dart';
 import 'package:flutter_application_1/ui/welcome.dart';
 import 'package:flutter_application_1/ui/MyHomePage.dart'; // Import the file where MyHomePage is defined
 
@@ -157,12 +158,19 @@ class Home extends StatelessWidget {
                           width: size.width * .8,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Create Account',
-                                style: TextStyle(
+                            children: [
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                  return const SignUpView();
+                                },
+                              ));
+                              },
+                                child: Text('Create Account',style: TextStyle(
                                   color: Colors.black54,
-                                ),
+                                ),),
+                                
                               ),
                               Text(
                                 'Forgot Details',

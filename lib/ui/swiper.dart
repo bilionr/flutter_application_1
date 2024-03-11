@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'package:flutter_application_1/ui/page1.dart';
-import 'package:flutter_application_1/ui/page2.dart';
-import 'package:flutter_application_1/ui/page3.dart';
-import 'package:flutter_application_1/ui/page4.dart';
+import 'package:flutter_application_1/ui/swiper1/Swiper1Page1.dart';
+import 'package:flutter_application_1/ui/swiper1/Swiper1Page2.dart';
+import 'package:flutter_application_1/ui/swiper1/Swiper1Page3.dart';
+import 'package:flutter_application_1/ui/swiper1/Swiper1Page4.dart';
 
 class Swiper extends StatelessWidget {
 
@@ -22,10 +22,10 @@ class Swiper extends StatelessWidget {
                 child: PageView(
                   controller: _controller,
                   children: [
-                    Page1(),
-                    Page2(),
-                    Page3(),
-                    Page4(),
+                    Swiper1Page1(),
+                    Swiper1Page2(),
+                    Swiper1Page3(),
+                    Swiper1Page4(),
                   ]
                 )
               ),

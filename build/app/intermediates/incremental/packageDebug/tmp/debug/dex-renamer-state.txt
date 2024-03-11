@@ -1,8 +1,8 @@
-#Mon Mar 04 20:35:16 ICT 2024
-base.0=D\:\\Akademik\\pmob prak\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=D\:\\Akademik\\pmob prak\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=D\:\\Akademik\\pmob prak\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.3=D\:\\Akademik\\pmob prak\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+#Mon Mar 11 06:46:07 ICT 2024
+base.0=D\:\\Mobile Project\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\Mobile Project\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=D\:\\Mobile Project\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.3=D\:\\Mobile Project\\flutter_application_1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=1/classes.dex
