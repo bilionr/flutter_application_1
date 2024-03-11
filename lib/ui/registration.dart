@@ -1,8 +1,10 @@
-// edited round text field
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common_widget/round_button.dart';
 import 'package:flutter_application_1/common_widget/round_textfield.dart';
+import 'package:flutter_application_1/ui/home.dart';
+
+import 'complete_profile_view.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -92,7 +94,7 @@ class _SignUpViewState extends State<SignUpView> {
                   ],
                 ),
                 SizedBox(
-                  height: media.width * 0.4,
+                  height: media.width * 0.2,
                 ),
                 RoundButton(title: "Register", onPressed: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (context) => const CompleteProfileView()  ));
@@ -101,7 +103,6 @@ class _SignUpViewState extends State<SignUpView> {
                   height: media.width * 0.04,
                 ),
                 Row(
-                  // crossAxisAlignment: CrossAxisAlignment.,
                   children: [
                     Expanded(
                         child: Container(
@@ -179,10 +180,10 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
                 TextButton(
                   onPressed: () {
-                    //  Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const LoginView()));
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Home()));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
