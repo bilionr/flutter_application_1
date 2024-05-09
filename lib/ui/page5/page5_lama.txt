@@ -1,0 +1,173 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/ui/page1/swiper.dart';
+import 'package:flutter_application_1/ui/page5/progress.dart';
+
+import '../../../common/colo_extension.dart';
+import '../../../common_widget/round_button.dart';
+import '../../../common_widget/title_subtitle_cell.dart';
+import '../../../common_widget/profile_tile.dart';
+
+class Page5 extends StatefulWidget {
+  const Page5({super.key});
+
+  @override
+  State<Page5> createState() => _Page5();
+}
+
+class _Page5 extends State<Page5> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          "FitDaily",
+          style: TextStyle(
+            color: Colors.blue,
+            fontFamily: 'Roboto',
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+            child: Column(children: <Widget>[
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    "assets/u2.png",
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Fadjar Restuadji",
+                        style: TextStyle(
+                          color: TColor.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "Lose a Fat Program",
+                        style: TextStyle(
+                          color: TColor.gray,
+                          fontSize: 12,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 70,
+                  height: 25,
+                  child: RoundButton(
+                    title: "Edit",
+                    type: RoundButtonType.bgGradient,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    onPressed: () {
+                    },
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Row(
+              children: [
+                Expanded(
+                  child: TitleSubtitleCell(
+                    title: "182cm",
+                    subtitle: "Height",
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: TitleSubtitleCell(
+                    title: "56kg",
+                    subtitle: "Weight",
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: TitleSubtitleCell(
+                    title: "19yo",
+                    subtitle: "Age",
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+      // Kalo nambahin nambahin diatasnya aja
+      ProfileTile(
+        my_title: "Progress",
+        my_icon: Icons.add,
+        onMyTap: Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                const ProgressDetailsView(),
+          ),
+        )
+      ),
+      ProfileTile(
+        my_title: "Report",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Goals",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Nutrition",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Food",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Community",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Friend",
+        my_icon: Icons.add,
+      ),
+      ProfileTile(
+        my_title: "Setting",
+        my_icon: Icons.add,
+      ),
+
+      Padding(
+        padding: const EdgeInsets.all(50),
+        child: RoundButton(title: "Log Out", onPressed: () {}),
+      ),
+    ])));
+  }
+}
