@@ -1,0 +1,100 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'dashboard.dart';
+import 'database_service.dart';
+
+import 'weight.dart';
+
+class addWeight extends StatelessWidget {
+
+  final DatabaseService _databaseService = DatabaseService();
+
+  static const routeName = "/add-weight";
+
+  final TextEditingController _weightDate = TextEditingController();
+  final TextEditingController _weightWeight = TextEditingController();
+  final TextEditingController _weightUser = TextEditingController();
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("ADD WEIGHT"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Form(
+          child: Column(
+            children: [
+              TextFormField(
+                autocorrect: false,
+                readOnly: true,
+                initialValue: FirebaseAuth.instance.currentUser?.email,
+                decoration: InputDecoration(labelText: "weightUser",hintText: FirebaseAuth.instance.currentUser?.email),
+              ),
+              TextFormField(
+                autofocus: true,
+                autocorrect: false,
+                decoration: InputDecoration(labelText: "weightWeight"),
+                textInputAction: TextInputAction.next,
+                controller: _weightWeight,
+              ),
+              TextFormField(
+                autocorrect: false,
+                decoration: 
+                  InputDecoration(labelText: "weightDate"),
+                   onTap: () async{
+                    DateTime? date = DateTime(1900);
+                    FocusScope.of(context).requestFocus(new FocusNode());
+
+                    date = await showDatePicker(
+                                  context: context, 
+                                  initialDate:DateTime.now(),
+                                  firstDate:DateTime(1900),
+                                  lastDate: DateTime(2100));
+
+                    _weightDate.text = date!.toIso8601String();
+                  },
+                textInputAction: TextInputAction.done,
+                controller: _weightDate,
+                onEditingComplete: () {},
+              ),
+              SizedBox(height: 50),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.centerRight,
+                child: OutlinedButton(
+                  onPressed: () {
+                    Weight w = Weight(
+                      weightDate: Timestamp.fromDate(DateTime.parse(_weightDate.text)), 
+                      weightUser: FirebaseAuth.instance.currentUser?.email as String, 
+                      weightWeight: int.parse(_weightWeight.text)
+                    );
+                    _databaseService.createWeight(w);
+                    Navigator.pop(context);
+                    },
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

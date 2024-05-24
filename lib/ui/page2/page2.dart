@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ui/page1/swiper.dart';
-import 'package:flutter_application_1/common_widget/tab_button.dart';
 import 'package:flutter_application_1/ui/page2/workout_detail_view.dart';
-
+import 'package:flutter_application_1/ui/page2/workout_detail_view2.dart';
+import 'package:flutter_application_1/ui/page2/workout_detail_view3.dart';
+import 'package:flutter_application_1/ui/page2/workout_detail_view4.dart';
 import '../../../common/colo_extension.dart';
 import '../../../common_widget/round_button.dart';
 
@@ -14,33 +14,39 @@ class Page2 extends StatefulWidget {
 }
 
 class _Page2State extends State<Page2> {
-  int isActiveTab = 0;
-
-  List workArr = [
+  List<Map<String, dynamic>> workArr = [
     {
       "name": "Push Up",
       "image": "assets/pushup.jpg",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain strength",
     },
     {
       "name": "Sit Up",
       "image": "assets/situp.jpeg",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain strength",
     },
     {
       "name": "Pull Up",
       "image": "assets/pullup.jpg",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain strength",
     },
     {
       "name": "Back Up",
       "image": "assets/backup.jpg",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain strength",
     },
+  ];
+
+  // Pisahkan rute ke dalam variabel terpisah
+  final List<Widget> routes = [
+    WorkoutDetailView(),
+    WorkoutDetailView2(),
+    WorkoutDetailView3(),
+    WorkoutDetailView4(),
   ];
 
   @override
@@ -72,72 +78,11 @@ class _Page2State extends State<Page2> {
       ),
       body: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: TColor.white,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TabButton(
-                    title: "Full Body",
-                    isActive: isActiveTab == 0,
-                    onPressed: () {
-                      setState(() {
-                        isActiveTab = 0;
-                      });
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TabButton(
-                    title: "Foot",
-                    isActive: isActiveTab == 1,
-                    onPressed: () {
-                      setState(() {
-                        isActiveTab = 1;
-                      });
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TabButton(
-                    title: "Arm",
-                    isActive: isActiveTab == 2,
-                    onPressed: () {
-                      setState(() {
-                        isActiveTab = 2;
-                      });
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: TabButton(
-                    title: "Body",
-                    isActive: isActiveTab == 3,
-                    onPressed: () {
-                      setState(() {
-                        isActiveTab = 3;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
           Expanded(
-            child: ListView.builder(
+            child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              itemCount: workArr.length,
-              itemBuilder: (context, index) {
-                var wObj = workArr[index] as Map? ?? {};
+              children: workArr.map((workout) {
+                int index = workArr.indexOf(workout);
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   height: media.width * 0.5,
@@ -149,7 +94,7 @@ class _Page2State extends State<Page2> {
                   child: Stack(
                     children: [
                       Image.asset(
-                        wObj["image"].toString(),
+                        workout["image"]!,
                         width: media.width,
                         height: media.width * 0.5,
                         fit: BoxFit.cover,
@@ -170,7 +115,7 @@ class _Page2State extends State<Page2> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              wObj["title"],
+                              workout["title"]!,
                               style: TextStyle(
                                 color: Colors.blue.shade50,
                                 fontSize: 14,
@@ -178,7 +123,7 @@ class _Page2State extends State<Page2> {
                               ),
                             ),
                             Text(
-                              wObj["name"],
+                              workout["name"]!,
                               style: TextStyle(
                                 color: TColor.white,
                                 fontSize: 20,
@@ -186,7 +131,7 @@ class _Page2State extends State<Page2> {
                               ),
                             ),
                             Text(
-                              wObj["subtitle"],
+                              workout["subtitle"]!,
                               style: TextStyle(
                                 color: TColor.white,
                                 fontSize: 14,
@@ -205,11 +150,11 @@ class _Page2State extends State<Page2> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     onPressed: () {
+                                      // Gunakan rute yang dipisahkan
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              const WorkoutDetailView(),
+                                          builder: (context) => routes[index],
                                         ),
                                       );
                                     },
@@ -223,7 +168,7 @@ class _Page2State extends State<Page2> {
                     ],
                   ),
                 );
-              },
+              }).toList(),
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -6,11 +7,14 @@ import 'package:flutter_application_1/common_widget/form_container_widget.dart';
 import 'package:flutter_application_1/common_widget/round_button.dart';
 import 'package:flutter_application_1/common_widget/round_textfield.dart';
 import 'package:flutter_application_1/login/home.dart';
+import 'package:flutter_application_1/login/pengguna.dart';
 import 'package:flutter_application_1/user_auth/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../common_widget/theformfield.dart';
 import 'complete_profile_view.dart';
+
+
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -29,6 +33,8 @@ class _SignUpViewState extends State<SignUpView> {
 
   final _formkey = GlobalKey<FormState>();
 
+  final db_users = FirebaseFirestore.instance;
+
   registration() async {
     if (password != null&& namecontroller.text!=""&& mailcontroller.text!="") {
       try {
@@ -41,7 +47,27 @@ class _SignUpViewState extends State<SignUpView> {
         )));
         // ignore: use_build_context_synchronously
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => CompleteProfileView()));
+        
+
+        // menambahkan ke database
+        final pengguna = Pengguna(
+          name : namecontroller.text,
+          email : mailcontroller.text
+        );
+
+        final penggunaRef = 
+        db_users
+          .collection("MyUsers")
+          .withConverter(
+            fromFirestore: Pengguna.fromFirestore,
+            toFirestore: (Pengguna pengguna, options) => pengguna.toFirestore(),)
+          .doc('${mailcontroller.text}');
+        await penggunaRef.set(pengguna);
+          
+
+
+
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -127,7 +153,6 @@ class _SignUpViewState extends State<SignUpView> {
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           hintText: "Password",
-                          // suffixIcon: rigtIcon,
                           prefixIcon: Container(
                               alignment: Alignment.center,
                               width: 20,
@@ -162,7 +187,6 @@ class _SignUpViewState extends State<SignUpView> {
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           hintText: "Password Confirm",
-                          // suffixIcon: rigtIcon,
                           prefixIcon: Container(
                               alignment: Alignment.center,
                               width: 20,
@@ -221,6 +245,7 @@ class _SignUpViewState extends State<SignUpView> {
                           });
                         }
                         registration();
+
                       },
                       child: Container(
                     width: double.infinity,

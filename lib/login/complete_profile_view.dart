@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common_widget/round_button.dart';
 import 'package:flutter_application_1/common_widget/round_textfield.dart';
 import 'package:flutter_application_1/login/what_your_goal_view.dart';
 import 'package:flutter_application_1/login/home.dart';
+
+import 'pengguna.dart';
 
 class CompleteProfileView extends StatefulWidget {
   const CompleteProfileView({Key? key}) : super(key: key);
@@ -12,7 +16,30 @@ class CompleteProfileView extends StatefulWidget {
 }
 
 class _CompleteProfileViewState extends State<CompleteProfileView> {
-  TextEditingController txtDate = TextEditingController();
+
+  final db_user = FirebaseFirestore.instance;
+
+  reg() async {
+      
+        final apdetan = Pengguna(
+          bornday: Timestamp.fromDate(DateTime.parse(_txtDate.text)),
+          weight: int.parse(_weight.text),
+          height: int.parse(_height.text),
+        );
+
+        final penggunaRef = 
+          db_user
+          .collection("MyUsers")
+          .doc('${FirebaseAuth.instance.currentUser?.email}')
+          .withConverter(
+            fromFirestore: Pengguna.fromFirestore, 
+            toFirestore: (Pengguna penggunaRef, options) => penggunaRef.toFirestore());
+          await penggunaRef.set(apdetan, SetOptions(merge: true));
+  }
+
+  TextEditingController _txtDate = TextEditingController();
+  TextEditingController _height = TextEditingController();
+  TextEditingController _weight = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +134,8 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                         height: media.width * 0.04,
                       ),
                       RoundTextField(
-                        controller: txtDate,
-                        hitText: "Date of Birth",
+                        controller: _txtDate,
+                        hitText: "Date of Birth (2004-10-24)",
                         icon: "assets/date.png",
                       ),
                       SizedBox(
@@ -118,7 +145,7 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                         children: [
                           Expanded(
                             child: RoundTextField(
-                              controller: txtDate,
+                              controller: _weight,
                               hitText: "Your Weight",
                               icon: "assets/weight.png",
                             ),
@@ -149,7 +176,7 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                         children: [
                           Expanded(
                             child: RoundTextField(
-                              controller: txtDate,
+                              controller: _height,
                               hitText: "Your Height",
                               icon: "assets/hight.png",
                             ),
@@ -179,7 +206,7 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                       RoundButton(
                         title: "Next >",
                         onPressed: () {
-                          // Navigate to the next screen or perform your logic
+                           reg();
                           Navigator.push(
                             context,
                             MaterialPageRoute(

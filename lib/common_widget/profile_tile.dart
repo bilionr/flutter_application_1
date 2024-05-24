@@ -7,7 +7,7 @@ import '../../common/colo_extension.dart';
 class ProfileTile extends StatelessWidget {
   final String my_title;
   final IconData my_icon;
-  final Future? onMyTap;
+  final VoidCallback? onMyTap;
   const ProfileTile({super.key, required this.my_title, required this.my_icon, this.onMyTap});
 
   @override
@@ -17,9 +17,7 @@ class ProfileTile extends StatelessWidget {
         padding: const EdgeInsets.all(1.0),
         child: Container(
           child: ListTile(
-            onTap: (){
-              onMyTap;
-            },
+            onTap: onMyTap,
             leading: Icon(my_icon),
             title: Text(
               my_title,

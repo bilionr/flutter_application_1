@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,15 +21,44 @@ class Page1 extends StatefulWidget {
 
 class _Page1 extends State<Page1> {
 
+  String _name = "";
+
+  @override
+  void initState() {
+    super.initState();
+    setState((){});
+    pageController = PageController(initialPage: 0, viewportFraction: 0.85);
+    carasouelTmer = getTimer();
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        showBtmAppBr = false;
+        setState(() {});
+      } else {
+        showBtmAppBr = true;
+        setState(() {});
+      }
+    });
+    
+    super.initState();
+    getData();
+    
+  }
+
+  void getData() async{
+    print("jalaannn");
+    final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection("MyUsers").doc('${FirebaseAuth.instance.currentUser?.email}').get();
+    
+
+    _name = userDoc.get('name');
+  }
+
   final List<Widget> listis = [
     Swiper1Page1(),
     Swiper1Page2(),
     Swiper1Page3(),
     Swiper1Page4()
   ];
-
-
-
 
   late final PageController pageController;
   ScrollController _scrollController = ScrollController();
@@ -49,24 +80,9 @@ class _Page1 extends State<Page1> {
     });
   }
 
-  @override
-  void initState() {
-    pageController = PageController(initialPage: 0, viewportFraction: 0.85);
-    carasouelTmer = getTimer();
-    _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        showBtmAppBr = false;
-        setState(() {});
-      } else {
-        showBtmAppBr = true;
-        setState(() {});
-      }
-    });
-    super.initState();
-  }
+  
 
-  @override
+  
   void dispose() {
     pageController.dispose();
     super.dispose();
@@ -106,8 +122,11 @@ class _Page1 extends State<Page1> {
                     ),
                   ),
                   selectedTileColor: Colors.indigoAccent.shade100,
+
                   title: Text(
-                    "Welcome Back",
+                    "Welcome Back $_name",
+
+
                     style: Theme.of(context).textTheme.subtitle1!.merge(
                           const TextStyle(
                             fontWeight: FontWeight.w700,
@@ -232,58 +251,7 @@ class _Page1 extends State<Page1> {
           ),
         ),
       ),
-      // floatingActionButtonLocation: showBtmAppBr
-      //     ? FloatingActionButtonLocation.centerDocked
-      //     : FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: const Icon(
-      //     Icons.add,
-      //   ),
-      // ),
-      // bottomNavigationBar: AnimatedContainer(
-      //   child: BottomAppBar(
-      //     notchMargin: 8.0,
-      //     shape: const CircularNotchedRectangle(),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: [
-      //         IconButton(
-      //           onPressed: () {},
-      //           icon: const Icon(
-      //             Icons.home_outlined,
-      //           ),
-      //         ),
-      //         IconButton(
-      //           onPressed: () {},
-      //           icon: const Icon(
-      //             CupertinoIcons.heart,
-      //           ),
-      //         ),
-      //         const SizedBox(
-      //           width: 50,
-      //         ),
-      //         IconButton(
-      //           onPressed: () {},
-      //           icon: const Icon(
-      //             CupertinoIcons.cart,
-      //           ),
-      //         ),
-      //         IconButton(
-      //           onPressed: () {},
-      //           icon: const Icon(
-      //             CupertinoIcons.bell,
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      //   duration: const Duration(
-      //     milliseconds: 800,
-      //   ),
-      //   curve: Curves.easeInOutSine,
-      //   height: showBtmAppBr ? 70 : 0,
-      // ),
+      
     );
   }
 }
@@ -294,7 +262,7 @@ class PopUpMen extends StatelessWidget {
   const PopUpMen({Key? key, required this.menuList, this.icon})
       : super(key: key);
 
-  @override
+  
   Widget build(BuildContext context) {
     return PopupMenuButton(
       shape: RoundedRectangleBorder(
@@ -314,7 +282,7 @@ class FabExt extends StatelessWidget {
 
   final bool showFabTitle;
 
-  @override
+  
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () {},
@@ -339,7 +307,7 @@ class FabExt extends StatelessWidget {
 class GridB extends StatefulWidget {
   const GridB({Key? key}) : super(key: key);
 
-  @override
+  
   State<GridB> createState() => _GridBState();
 }
 
@@ -371,7 +339,7 @@ class _GridBState extends State<GridB> {
     },
   ];
 
-  @override
+  
   Widget build(BuildContext context) {
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),

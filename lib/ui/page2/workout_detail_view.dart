@@ -28,7 +28,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
 
   List responseArr = [
     {
-      "name": "Billy Alexander",
+      "name": "Billy Alexander1",
       "time": "09 days ago",
       "image": "assets/u2.png",
       "message": "Sangat bermanfaat!"
