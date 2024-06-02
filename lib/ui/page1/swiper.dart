@@ -30,17 +30,6 @@ class Swiper extends StatelessWidget {
                 )
               ),
 
-              // SmoothPageIndicator(
-              //   controller: _controller,
-              //   count: 4,
-              //   effect: SlideEffect(
-              //     activeDotColor: Colors.blue,
-              //     dotColor: Colors.grey,
-              //     dotHeight:10,
-              //     dotWidth: 10,
-              //   ),
-              // )
-
         ]
       )
 

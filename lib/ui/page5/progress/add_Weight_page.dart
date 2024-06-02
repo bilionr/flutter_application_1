@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dashboard.dart';
+import 'progressdashboard.dart';
 import 'database_service.dart';
 
 import 'weight.dart';
@@ -14,7 +14,7 @@ class addWeight extends StatelessWidget {
 
   static const routeName = "/add-weight";
 
-  final TextEditingController _weightDate = TextEditingController();
+  final _weightDate = Timestamp.now();
   final TextEditingController _weightWeight = TextEditingController();
   final TextEditingController _weightUser = TextEditingController();
   
@@ -51,23 +51,11 @@ class addWeight extends StatelessWidget {
               ),
               TextFormField(
                 autocorrect: false,
+                readOnly: true,
+                initialValue: Timestamp.now().toString(),
                 decoration: 
-                  InputDecoration(labelText: "weightDate"),
-                   onTap: () async{
-                    DateTime? date = DateTime(1900);
-                    FocusScope.of(context).requestFocus(new FocusNode());
-
-                    date = await showDatePicker(
-                                  context: context, 
-                                  initialDate:DateTime.now(),
-                                  firstDate:DateTime(1900),
-                                  lastDate: DateTime(2100));
-
-                    _weightDate.text = date!.toIso8601String();
-                  },
-                textInputAction: TextInputAction.done,
-                controller: _weightDate,
-                onEditingComplete: () {},
+                  InputDecoration(labelText: "weightDate",
+                  hintText: _weightDate.toString()),
               ),
               SizedBox(height: 50),
               Container(
@@ -76,10 +64,11 @@ class addWeight extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {
                     Weight w = Weight(
-                      weightDate: Timestamp.fromDate(DateTime.parse(_weightDate.text)), 
+                      weightDate: Timestamp.now(), 
                       weightUser: FirebaseAuth.instance.currentUser?.email as String, 
                       weightWeight: int.parse(_weightWeight.text)
                     );
+                    
                     _databaseService.createWeight(w);
                     Navigator.pop(context);
                     },

@@ -16,36 +16,46 @@ class _MenuItemsViewState extends State<MenuItemsView> {
 
   List menuItemsArr = [
     {
-      "image": "assets/dess_1.png",
-      "name": "Salad Buah",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Buah"
+      "image": "assets/sayur_1.jpg",
+      "name": "Capcay",
+      "rate": "4.3",
+      "calories": "25 kalori",
+      "food_type": "Sayur"
     },
     {
-      "image": "assets/dess_2.png",
-      "name": "Jus Buah",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Cakes by Tella",
-      "food_type": "Buah"
+      "image": "assets/sayur_2.jpg",
+      "name": "Gado Gado",
+      "rate": "4.5",
+      "calories": "35 kalori",
+      "food_type": "Sayur"
     },
     {
-      "image": "assets/dess_3.png",
-      "name": "Puding Buah",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Café Racer",
-      "food_type": "Buah"
+      "image": "assets/sayur_3.jpg",
+      "name": "Sayur Asam",
+      "rate": "4.3",
+      "calories": "33 kalori",
+      "food_type": "Sayur"
     },
     {
-      "image": "assets/dess_4.png",
-      "name": "Rujak Buah",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Buah"
+      "image": "assets/sayur_4.jpeg",
+      "name": "Salad Sayur",
+      "rate": "4.8",
+      "calories": "25 kalori",
+      "food_type": "Sayur"
+    },
+    {
+      "image": "assets/sayur_5.jpg",
+      "name": "Sayur Lodeh",
+      "rate": "4.1",
+      "calories": "42 kalori",
+      "food_type": "Sayur"
+    },
+    {
+      "image": "assets/sayur_6.jpg",
+      "name": "Sayur Bening",
+      "rate": "4.2",
+      "calories": "32 kalori",
+      "food_type": "Sayur"
     },
   ];
 
@@ -78,7 +88,7 @@ class _MenuItemsViewState extends State<MenuItemsView> {
                       width: 50,
                     ),
                     Center(
-                        child: Text('Menu',
+                        child: Text('Menu Sayur',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center)),
@@ -107,7 +117,7 @@ class _MenuItemsViewState extends State<MenuItemsView> {
                 padding: EdgeInsets.zero,
                 itemCount: menuItemsArr.length,
                 itemBuilder: ((context, index) {
-                  var mObj = menuItemsArr[index] as Map? ?? {};
+                  var mObj = menuItemsArr[index];
                   return MenuItemRow(
                     mObj: mObj,
                     onTap: () {},

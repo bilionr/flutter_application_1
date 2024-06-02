@@ -19,22 +19,22 @@ class _MenuViewState extends State<Page3> {
   List<Map<String, String>> menuArr = [
     {
       "name": "Buah",
-      "image": "assets/menu_1.png",
+      "image": "assets/menu_1.jpg",
       "items_count": "4",
     },
     {
       "name": "Sayur",
-      "image": "assets/menu_2.png",
+      "image": "assets/menu_2.jpg",
       "items_count": "6",
     },
     {
       "name": "Daging",
-      "image": "assets/menu_3.png",
+      "image": "assets/menu_3.jpg",
       "items_count": "3",
     },
     {
       "name": "Ikan",
-      "image": "assets/menu_4.png",
+      "image": "assets/menu_4.jpg",
       "items_count": "3",
     },
   ];
@@ -95,13 +95,13 @@ class _MenuViewState extends State<Page3> {
                   shrinkWrap: true,
                   children: [
                     _buildMenuItem(context, media, menuArr[0],
-                        MenuItemsView(mObj: menuArr[0])),
+                        MenuItemsView4(mObj: menuArr[0])),
                     _buildMenuItem(context, media, menuArr[1],
-                        MenuItemsView2(mObj: menuArr[1])),
+                        MenuItemsView(mObj: menuArr[1])),
                     _buildMenuItem(context, media, menuArr[2],
-                        MenuItemsView3(mObj: menuArr[2])),
+                        MenuItemsView2(mObj: menuArr[2])),
                     _buildMenuItem(context, media, menuArr[3],
-                        MenuItemsView4(mObj: menuArr[3])),
+                        MenuItemsView3(mObj: menuArr[3])),
                   ],
                 )
               ],

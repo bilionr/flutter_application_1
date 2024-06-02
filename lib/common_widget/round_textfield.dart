@@ -18,6 +18,13 @@ class RoundTextField extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.grey[50], borderRadius: BorderRadius.circular(15)),
       child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please Enter Yang Benar';
+          }
+          else if(value is int){return 'Integer only';}
+          return null;
+        },
         controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText,

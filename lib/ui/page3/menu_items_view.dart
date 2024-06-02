@@ -16,36 +16,32 @@ class _MenuItemsView4State extends State<MenuItemsView4> {
 
   List menuItemsArr = [
     {
-      "image": "assets/dess_1.png",
-      "name": "Ikan Bakar",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Ikan"
+      "image": "assets/buah_1.jpg",
+      "name": "Salad Buah",
+      "rate": "4.5",
+      "calories": "20 kalori",
+      "food_type": "Buah"
     },
     {
-      "image": "assets/dess_2.png",
-      "name": "Pepes Ikan",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Cakes by Tella",
-      "food_type": "Ikan"
+      "image": "assets/buah_2.jpg",
+      "name": "Jus Buah",
+      "rate": "4.3",
+      "calories": "14 kalori",
+      "food_type": "Buah"
     },
     {
-      "image": "assets/dess_3.png",
-      "name": "Ikan Kuah Kuning",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Café Racer",
-      "food_type": "Ikan"
+      "image": "assets/buah_3.jpg",
+      "name": "Puding Buah",
+      "rate": "4.2",
+      "calories": "12 kalori",
+      "food_type": "Buah"
     },
     {
-      "image": "assets/dess_4.png",
-      "name": "Sashimi",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Ikan"
+      "image": "assets/buah_4.jpg",
+      "name": "Rujak Buah",
+      "rate": "4.4",
+      "calories": "17 kalori",
+      "food_type": "Buah"
     },
   ];
 
@@ -78,7 +74,7 @@ class _MenuItemsView4State extends State<MenuItemsView4> {
                       width: 50,
                     ),
                     Center(
-                        child: Text('Menu',
+                        child: Text('Menu Buah',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center)),

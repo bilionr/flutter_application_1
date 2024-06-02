@@ -40,11 +40,6 @@ class _SignUpViewState extends State<SignUpView> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-          "Registered Successfully",
-          style: TextStyle(fontSize: 20.0),
-        )));
         // ignore: use_build_context_synchronously
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => CompleteProfileView()));
@@ -139,6 +134,7 @@ class _SignUpViewState extends State<SignUpView> {
                       decoration: BoxDecoration(
                         color: Colors.grey[50], borderRadius: BorderRadius.circular(15)),
                         child: TextFormField(
+                          obscureText: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please Enter Yang Benar';
@@ -174,9 +170,10 @@ class _SignUpViewState extends State<SignUpView> {
                       decoration: BoxDecoration(
                         color: Colors.grey[50], borderRadius: BorderRadius.circular(15)),
                         child: TextFormField(
+                          obscureText: true,
                         validator: (value) {
                           if (value != passwordcontroller.text) {
-                            return 'Please Enter Yang Benar';
+                            return 'Password Tidak Sama';
                           }
                           return null;
                         },

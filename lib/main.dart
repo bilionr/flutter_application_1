@@ -1,11 +1,15 @@
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/login/home.dart';
 import 'package:flutter_application_1/login/welcome.dart';
+import 'package:flutter_application_1/ui/MyHomePage.dart';
+
+import 'auth_provider.dart';
+import 'auth_service.dart';
 
 
 Future main() async{
@@ -21,8 +25,9 @@ Future main() async{
     )
   )
   : await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
+
 
 // Class
 class MyApp extends StatelessWidget {
@@ -30,9 +35,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Welcome(),
-      debugShowCheckedModeBanner: false,
+    return Provider(
+      
+      auth: AuthService(),
+      child: MaterialApp(
+        home: HomeController(),
+        debugShowCheckedModeBanner: false,
+      )
+    );
+  }
+}
+
+class HomeController extends StatelessWidget {
+  const HomeController({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final AuthService auth = Provider.of(context)!.auth;
+
+    return StreamBuilder(
+      stream: auth.onAuthStateChanged,
+      builder: (context, AsyncSnapshot<User?> snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          final bool signedIn = snapshot.hasData;
+          return signedIn ? MyHomePage() : Welcome();
+        }
+        return Container(
+          color: Colors.black,
+        );
+      },
     );
   }
 }

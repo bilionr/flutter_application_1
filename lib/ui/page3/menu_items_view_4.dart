@@ -16,28 +16,25 @@ class _MenuItemsView3State extends State<MenuItemsView3> {
 
   List menuItemsArr = [
     {
-      "image": "assets/dess_1.png",
-      "name": "Ayam Panggang Bumbu Rujak",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Desserts"
+      "image": "assets/ikan_1.jpeg",
+      "name": "Ikan Bakar",
+      "rate": "4.6",
+      "calories": "43 kalori",
+      "food_type": "Ikan"
     },
     {
-      "image": "assets/dess_2.png",
-      "name": "Sate Ayam",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Cakes by Tella",
-      "food_type": "Desserts"
+      "image": "assets/ikan_2.jpg",
+      "name": "Pepes Ikan",
+      "rate": "4.3",
+      "calories": "38 kalori",
+      "food_type": "Ikan"
     },
     {
-      "image": "assets/dess_3.png",
-      "name": "Sup Ayam Bening",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Café Racer",
-      "food_type": "Desserts"
+      "image": "assets/ikan_3.JPG",
+      "name": "Ikan Kuah Kuning",
+      "rate": "4.1",
+      "calories": "41 kalori",
+      "food_type": "Ikan"
     },
   ];
 
@@ -70,7 +67,7 @@ class _MenuItemsView3State extends State<MenuItemsView3> {
                       width: 50,
                     ),
                     Center(
-                        child: Text('Menu',
+                        child: Text('Menu Ikan',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center)),

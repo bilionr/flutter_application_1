@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:fitness/view/login/welcome_view.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/colo_extension.dart';
 import '../../common_widget/round_button.dart';
+import '../ui/MyHomePage.dart';
 import 'home.dart';
+import 'pengguna.dart';
 
 class WhatYourGoalView extends StatefulWidget {
   const WhatYourGoalView({super.key});
@@ -14,9 +17,33 @@ class WhatYourGoalView extends StatefulWidget {
 }
 
 class _WhatYourGoalViewState extends State<WhatYourGoalView> {
+
+  reg(String inp) async {
+      
+        final apdetan = Pengguna(
+          goal: inp,
+        );
+
+        final penggunaRef = 
+          FirebaseFirestore.instance
+          .collection("MyUsers")
+          .doc('${FirebaseAuth.instance.currentUser?.email}')
+          .withConverter(
+            fromFirestore: Pengguna.fromFirestore, 
+            toFirestore: (Pengguna penggunaRef, options) => penggunaRef.toFirestore());
+          await penggunaRef.set(apdetan, SetOptions(merge: true));
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          "Registered Successfully",
+          style: TextStyle(fontSize: 20.0),
+        )));
+  }
+  var selectedItem;
   CarouselController buttonCarouselController = CarouselController();
 
-  List goalArr = [
+
+  List goalArr = <Map<String, dynamic>> [
     {
       "image": "assets/goal_1.png",
       "title": "Improve Shape",
@@ -105,6 +132,9 @@ class _WhatYourGoalViewState extends State<WhatYourGoalView> {
                 viewportFraction: 0.7,
                 aspectRatio: 0.74,
                 initialPage: 0,
+                onPageChanged: ((index, reason) {
+                  selectedItem = goalArr[index]['title'];
+                })
               ),
             ),
           ),
@@ -129,16 +159,11 @@ class _WhatYourGoalViewState extends State<WhatYourGoalView> {
                   style: TextStyle(color: TColor.gray, fontSize: 12),
                 ),
                 const Spacer(),
-                SizedBox(
-                  height: media.width * 0.05,
-                ),
                 RoundButton(
                     title: "Confirm",
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Home()));
+                      reg(selectedItem);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
                     }),
               ],
             ),

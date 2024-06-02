@@ -13,9 +13,35 @@ class GoalsPage extends StatelessWidget {
           },
         ),
       ),
-      body: Center(
-        child: Text("Goals sementara"),
-      ),
+      body: ListView(
+      children: <Widget>[
+        
+        const Divider(height:0),
+
+        ListTile(
+          title: Text("Starting weight"),
+          trailing: Text("yyyy")
+        ),
+
+        const Divider(height:0),
+
+        ListTile(
+          title: Text("Current weight"),
+          trailing: Text("yyyy"),
+        ),
+
+        const Divider(height:0),
+
+        ListTile(
+          title: Text("Goal weight"),
+          trailing: Text("yyy"),
+        ),
+
+        const Divider(height:0),
+
+      ]
+    ),
     );
   }
 }
+

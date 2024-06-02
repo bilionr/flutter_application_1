@@ -9,7 +9,6 @@ import '../../../common/colo_extension.dart';
 import '../../../common_widget/round_button.dart';
 import '../../../common_widget/title_subtitle_cell.dart';
 import '../../../common_widget/profile_tile.dart';
-import 'progress_page.dart';
 import 'report_page.dart';
 import 'goals_page.dart';
 import 'nutrition_page.dart';
@@ -17,7 +16,7 @@ import 'food_page.dart';
 import 'community_page.dart';
 import 'friend_page.dart';
 import 'setting_page.dart';
-import '../page5/progress/dashboard.dart';
+import 'progress/progressdashboard.dart';
 
 import 'package:flutter_application_1/user_auth/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,6 +33,16 @@ class _Page5 extends State<Page5> {
   String _name="";
   int _height=0;
   int _weight=0;
+  String _goal = "";
+  Timestamp _bornday = Timestamp.now();
+  
+
+  int getAge(DateTime dt){
+    
+    Duration parse = dt.difference(DateTime.now()).abs();
+    return parse.inDays~/360;
+
+  }
 
   void initState(){
     getData();
@@ -41,13 +50,16 @@ class _Page5 extends State<Page5> {
   }
 
   Future<void> getData() async {
-    print("jalaannn");
     final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection("MyUsers").doc('${FirebaseAuth.instance.currentUser?.email}').get();
     
 
     _name = userDoc.get('name');
     _height = userDoc.get('height');
     _weight = userDoc.get('weight');
+    _goal = userDoc.get('goal');
+    _bornday = userDoc.get('bornday');
+
+    setState(() {});
   }
 
 
@@ -108,7 +120,7 @@ class _Page5 extends State<Page5> {
                             ),
                           ),
                           Text(
-                            "Lose a Fat Program",
+                            "${_goal} Program",
                             style: TextStyle(
                               color: TColor.gray,
                               fontSize: 12,
@@ -117,17 +129,7 @@ class _Page5 extends State<Page5> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 70,
-                      height: 25,
-                      child: RoundButton(
-                        title: "Edit",
-                        type: RoundButtonType.bgGradient,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        onPressed: () {},
-                      ),
-                    )
+                    
                   ],
                 ),
                 const SizedBox(
@@ -155,7 +157,7 @@ class _Page5 extends State<Page5> {
                     ),
                     Expanded(
                       child: TitleSubtitleCell(
-                        title: "19yo",
+                        title: "${getAge(_bornday.toDate())} yo",
                         subtitle: "Age",
                       ),
                     ),
@@ -171,7 +173,7 @@ class _Page5 extends State<Page5> {
             onMyTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Dashboard()),
+                MaterialPageRoute(builder: (context) => ProgressDashboard()),
               );},
           ),
           

@@ -5,11 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_application_1/ui/page1/swiper.dart';
 import 'package:flutter_application_1/ui/page1/swiper1/Swiper1Page1.dart';
 import 'package:flutter_application_1/ui/page1/swiper1/Swiper1Page2.dart';
 import 'package:flutter_application_1/ui/page1/swiper1/Swiper1Page3.dart';
 import 'package:flutter_application_1/ui/page1/swiper1/Swiper1Page4.dart';
+import '../../common_widget/popupmen.dart';
 
 
 class Page1 extends StatefulWidget {
@@ -26,7 +26,6 @@ class _Page1 extends State<Page1> {
   @override
   void initState() {
     super.initState();
-    setState((){});
     pageController = PageController(initialPage: 0, viewportFraction: 0.85);
     carasouelTmer = getTimer();
     _scrollController.addListener(() {
@@ -40,17 +39,14 @@ class _Page1 extends State<Page1> {
       }
     });
     
-    super.initState();
     getData();
     
   }
 
   void getData() async{
-    print("jalaannn");
     final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection("MyUsers").doc('${FirebaseAuth.instance.currentUser?.email}').get();
-    
-
     _name = userDoc.get('name');
+    setState(() {});
   }
 
   final List<Widget> listis = [
@@ -79,9 +75,6 @@ class _Page1 extends State<Page1> {
       pageNo++;
     });
   }
-
-  
-
   
   void dispose() {
     pageController.dispose();
@@ -256,53 +249,6 @@ class _Page1 extends State<Page1> {
   }
 }
 
-class PopUpMen extends StatelessWidget {
-  final List<PopupMenuEntry> menuList;
-  final Widget? icon;
-  const PopUpMen({Key? key, required this.menuList, this.icon})
-      : super(key: key);
-
-  
-  Widget build(BuildContext context) {
-    return PopupMenuButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      itemBuilder: ((context) => menuList),
-      icon: icon,
-    );
-  }
-}
-
-class FabExt extends StatelessWidget {
-  const FabExt({
-    Key? key,
-    required this.showFabTitle,
-  }) : super(key: key);
-
-  final bool showFabTitle;
-
-  
-  Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: () {},
-      label: AnimatedContainer(
-        duration: const Duration(seconds: 2),
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          children: [
-            const Icon(CupertinoIcons.cart),
-            SizedBox(width: showFabTitle ? 12.0 : 0),
-            AnimatedContainer(
-              duration: const Duration(seconds: 2),
-              child: showFabTitle ? const Text("Go to cart") : const SizedBox(),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class GridB extends StatefulWidget {
   const GridB({Key? key}) : super(key: key);

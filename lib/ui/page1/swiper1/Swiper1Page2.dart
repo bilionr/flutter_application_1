@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -50,14 +52,83 @@ class Swiper1Page2 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Workout",
+                    "Workout (NO PREMIUM)",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                
+                  
+                    ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: Column(
+                        children: [
+                          Text(
+                    "Remaining = Goal - Food + Exercise",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        child:PieChart(
+                          chartRadius: 50,
+                          dataMap: <String, double>{"Flutter":5},
+                          chartType: ChartType.ring,
+                          colorList: <Color>[Colors.greenAccent],
+                          totalValue: 5,
+                          legendOptions: LegendOptions(showLegends: false),
+                          chartValuesOptions: ChartValuesOptions(
+                            showChartValues: false,
+                          ),
+                          ringStrokeWidth: 10,
+                        ),
+                      ),
+
+                      Spacer(),
+                      
+                      Column(children: [
+                        Text(
+                          "Base Goal = 2000",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+
+                        Text(
+                          "Food = 0",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+
+                        Text(
+                          "Exercise = 0",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],)
+
+                    ], 
+                  )
+                        ]
+                      ),
+                    ),
+
                 ]
             ),
 

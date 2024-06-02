@@ -17,7 +17,7 @@ class MenuItemRow extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             Image.asset(
-              mObj["image"].toString(),
+              mObj["image"],
               width: double.maxFinite,
               height: 200,
               fit: BoxFit.cover,
@@ -72,7 +72,7 @@ class MenuItemRow extends StatelessWidget {
                             width: 8,
                           ),
                           Text(
-                            mObj["type"],
+                            'Type',
                             textAlign: TextAlign.center,
                             style: TextStyle(color: TColor.white, fontSize: 11),
                           ),

@@ -16,52 +16,25 @@ class _MenuItemsView2State extends State<MenuItemsView2> {
 
   List menuItemsArr = [
     {
-      "image": "assets/dess_1.png",
-      "name": "Capcay",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Sayur"
+      "image": "assets/daging_1.jpeg",
+      "name": "Ayam Panggang Bumbu Rujak",
+      "rate": "4.6",
+      "calories": "40 kalori",
+      "food_type": "Daging"
     },
     {
-      "image": "assets/dess_2.png",
-      "name": "Gado Gado",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Cakes by Tella",
-      "food_type": "Sayur"
+      "image": "assets/daging_2.jpeg",
+      "name": "Sate Ayam",
+      "rate": "4.8",
+      "calories": "36 kalori",
+      "food_type": "Daging"
     },
     {
-      "image": "assets/dess_3.png",
-      "name": "Sayur Asam",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Café Racer",
-      "food_type": "Sayur"
-    },
-    {
-      "image": "assets/dess_4.png",
-      "name": "Salad Sayur",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Sayur"
-    },
-    {
-      "image": "assets/dess_1.png",
-      "name": "Sayur Lodeh",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Minute by tuk tuk",
-      "food_type": "Sayur"
-    },
-    {
-      "image": "assets/dess_2.png",
-      "name": "Sayur Bening",
-      "rate": "4.9",
-      "rating": "124",
-      "type": "Cakes by Tella",
-      "food_type": "Sayur"
+      "image": "assets/daging_3.jpg",
+      "name": "Sup Ayam Bening",
+      "rate": "4.3",
+      "calories": "41 kalori",
+      "food_type": "Daging"
     },
   ];
 
@@ -94,7 +67,7 @@ class _MenuItemsView2State extends State<MenuItemsView2> {
                       width: 50,
                     ),
                     Center(
-                        child: Text('Menu',
+                        child: Text('Menu Daging',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center)),
