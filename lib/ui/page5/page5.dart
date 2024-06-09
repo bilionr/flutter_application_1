@@ -139,7 +139,7 @@ class _Page5 extends State<Page5> {
                   children: [
                     Expanded(
                       child: TitleSubtitleCell(
-                        title: _height.toString(),
+                        title: "${_height.toString()} cm",
                         subtitle: "Height",
                       ),
                     ),
@@ -148,7 +148,7 @@ class _Page5 extends State<Page5> {
                     ),
                     Expanded(
                       child: TitleSubtitleCell(
-                        title: _weight.toString(),
+                        title: "${_weight.toString()} kg",
                         subtitle: "Weight",
                       ),
                     ),
