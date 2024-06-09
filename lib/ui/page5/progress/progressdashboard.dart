@@ -8,12 +8,6 @@ import 'add_Weight_page.dart';
 
 import 'weight.dart';
 
-class ChartData {
-  ChartData(this.x, this.y);
-  final Timestamp x;
-  final int y;
-}
-
 
 class ProgressDashboard extends StatefulWidget {
   @override

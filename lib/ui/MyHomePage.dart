@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin_rounded),
 
-            label: 'Public',
+            label: 'News',
             // backgroundColor:Colors.blue,
           ),
 
