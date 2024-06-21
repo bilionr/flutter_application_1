@@ -120,7 +120,7 @@ class _Page1 extends State<Page1> {
                     "Welcome Back $_name",
 
 
-                    style: Theme.of(context).textTheme.subtitle1!.merge(
+                    style: Theme.of(context).textTheme.titleMedium!.merge(
                           const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 18.0,
@@ -129,7 +129,7 @@ class _Page1 extends State<Page1> {
                   ),
                   subtitle: Text(
                     "A Greet welcome to you all.",
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   trailing: PopUpMen(
                     menuList: const [
@@ -327,7 +327,7 @@ class _GridBState extends State<GridB> {
                   children: [
                     Text(
                       "${gridMap.elementAt(index)['title']}",
-                      style: Theme.of(context).textTheme.subtitle1!.merge(
+                      style: Theme.of(context).textTheme.titleMedium!.merge(
                             const TextStyle(
                               fontWeight: FontWeight.w700,
                             ),
@@ -338,7 +338,7 @@ class _GridBState extends State<GridB> {
                     ),
                     Text(
                       "${gridMap.elementAt(index)['price']}",
-                      style: Theme.of(context).textTheme.subtitle2!.merge(
+                      style: Theme.of(context).textTheme.titleSmall!.merge(
                             TextStyle(
                               fontWeight: FontWeight.w700,
                               color: Colors.grey.shade500,

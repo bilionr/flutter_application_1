@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'progressdashboard.dart';
 import 'database_service.dart';
@@ -62,7 +64,7 @@ class addWeight extends StatelessWidget {
                 width: double.infinity,
                 alignment: Alignment.centerRight,
                 child: OutlinedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Weight w = Weight(
                       weightDate: Timestamp.now(), 
                       weightUser: FirebaseAuth.instance.currentUser?.email as String, 
@@ -71,6 +73,16 @@ class addWeight extends StatelessWidget {
                     
                     _databaseService.createWeight(w);
                     Navigator.pop(context);
+
+                    DatabaseReference ref = FirebaseDatabase.instance.ref("wgt/234");
+                    await ref.set({
+                      "wgt": int.parse(_weightWeight.text)
+                    });
+
+
+
+
+
                     },
                   child: Text(
                     "Submit",

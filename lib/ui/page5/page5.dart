@@ -199,65 +199,6 @@ class _Page5 extends State<Page5> {
             },
           ),
 
-
-          ProfileTile(
-            my_title: "Nutrition",
-            my_icon: Icons.add,
-            onMyTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NutritionPage()),
-              );
-            },
-          ),
-
-
-          ProfileTile(
-            my_title: "Food",
-            my_icon: Icons.add,
-            onMyTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FoodPage()),
-              );
-            },
-          ),
-
-          ProfileTile(
-            my_title: "Community",
-            my_icon: Icons.add,
-            onMyTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CommunityPage()),
-              );
-            },
-          ),
-
-
-          ProfileTile(
-            my_title: "Friend",
-            my_icon: Icons.add,
-            onMyTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FriendPage()),
-              );
-            },
-          ),
-
-
-          ProfileTile(
-            my_title: "Setting",
-            my_icon: Icons.add,
-            onMyTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SettingPage()),
-              );
-            },
-          ),
-
           Padding(
             padding: const EdgeInsets.all(50),
             child: RoundButton(title: "Log Out", onPressed: () {signOut();}),
