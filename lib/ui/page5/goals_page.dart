@@ -11,25 +11,6 @@ class GoalsPage extends StatefulWidget {
 }
 
 class _GoalsPageState extends State<GoalsPage> {
-  var _data;
-
-  @override
-  void initState(){
-    super.initState();
-    getW();
-    print(_data);
-  }
-
-  void getW(){
-    final docRef = db.doc('${FirebaseAuth.instance.currentUser?.email}');
-    docRef.get().then(
-      (DocumentSnapshot doc) {
-        _data = doc.data() as Map<String, dynamic>;
-        print("getW : $_data .....");
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +30,7 @@ class _GoalsPageState extends State<GoalsPage> {
 
         ListTile(
           title: Text("Starting weight"),
-          trailing: Text(_data)
+          trailing: Text("y")
         ),
 
         const Divider(height:0),

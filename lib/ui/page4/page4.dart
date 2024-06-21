@@ -156,7 +156,7 @@ class _Page4State extends State<Page4>{
                                                   "${news[index]['source']['name']}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .subtitle2,
+                                                      .titleSmall,
                                                 ),
                                               ),
                                             ),
